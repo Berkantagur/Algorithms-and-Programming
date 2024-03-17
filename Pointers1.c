@@ -18,7 +18,7 @@
                                           A110
 */                                        
 
-//Pointers içerisinde değer tutmaz, başka bir değişkenin adresi durur.
+//  Pointer içerisinde değer tutmaz, başka bir değişkenin adresi durur.
 //  printf("%d", *ptr); -> 10 (ptr'nin gösterdiği adresteki değeri yazdırır.)
 //  printf("%d", ptr); -> A101 (ptr'nin gösterdiği adresi yazdırır.)
 //  printf("%d", &ptr); -> A106 (ptr'nin adresini yazdırır.)
