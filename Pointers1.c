@@ -34,16 +34,20 @@ int main(){
     countPtr = &ptr;
 
     printf("%d\n", a); // a'nın değeri (5)
-    printf("%d\n", &a); // a'nın adresi (Örn: 6422300) // Adres için %p kullanılır.
+    printf("%p\n", &a); // a'nın adresi (Örn: 0061FF1C) // Adres için %p kullanılır.
     printf("%d\n", *ptr); // ptr'nin gösterdiği adresteki değer (5)
-    printf("%d\n", ptr); // ptr'nin gösterdiği adres (Örn: 6422300)
-    printf("%d\n", &ptr); // ptr'nin adresi (Örn: 6422296)
-    printf("%d\n", **countPtr); // countPtr'nin gösterdiği adresteki değer (6422300)
-    printf("%d\n", *countPtr); // countPtr'nin gÖsterdiği adres (Örn: 6422296)
-    printf("%d\n", &countPtr); // countPtr'nin adresi (Örn: 6422292)
+    printf("%p\n", ptr); // ptr'nin gösterdiği adres (Örn: 0061FF1C)
+    printf("%p\n", &ptr); // ptr'nin adresi (Örn: 0061FF18)
+    printf("%d\n", **countPtr); // countPtr'nin gösterdiği adresteki değer (5)
+    printf("%p\n", *countPtr); // countPtr'nin gösterdiği adres (Örn: 0061FF1C)
+    printf("%p\n", &countPtr); // countPtr'nin adresi (Örn: 0061FF14)
 
     *ptr = 10;
     printf("%d\n", a); // a'nın değeri (10)
+
+    printf ("Showing that * and & are complements of each other\n");
+    printf ("&*ptr = %p\n", &*ptr); // &*ptr = 0061FF1C
+    printf ("*&ptr = %p\n", *&ptr); // *&ptr = 0061FF1C
 
     getch();
     return 0;
