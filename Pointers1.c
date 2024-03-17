@@ -42,6 +42,9 @@ int main(){
     printf("%d\n", *countPtr); // countPtr'nin gÖsterdiği adres (Örn: 6422296)
     printf("%d\n", &countPtr); // countPtr'nin adresi (Örn: 6422292)
 
+    *ptr = 10;
+    printf("%d\n", a); // a'nın değeri (10)
+
     getch();
     return 0;
 }
