@@ -73,7 +73,7 @@ int main(void){
     char *temp;
     temp = array;
 
-    while (*temp != '\n'){
+    while (*temp != '\0'){
         temp++;
         printf("%c", *temp);
         temp++;
