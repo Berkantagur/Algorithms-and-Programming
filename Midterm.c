@@ -67,7 +67,7 @@ int main(void)
 //OUTPUT: olleH !dlroW
 }
 */
-
+/*
 int main(void){
     char array[27] = "Algorithms and Programming";
     char *temp;
@@ -80,4 +80,27 @@ int main(void){
     }
     return 0;
 //OUTPUT: loihsadPormig
+}
+*/
+
+typedef struct{
+    float real, imag;
+}COMPLEX_T;
+
+COMPLEX_T add(COMPLEX_T *c1, COMPLEX_T *c2){
+    COMPLEX_T sum;
+    sum.real = c1->real + c2->real;
+    sum.imag = c1->imag + c2->imag;
+    return sum;
+}
+
+int main(void){
+    COMPLEX_T c1, c2, c3;
+    c1.real = 1.0;
+    c1.imag = 2.0;
+    c2.real = 3.0;
+    c2.imag = 4.0;
+    c3 = add(&c1, &c2);
+    printf("%f %f", c3.real, c3.imag);
+    return 0;
 }
