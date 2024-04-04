@@ -33,6 +33,7 @@ int main(void){
         else{
             word[k] = '\0';
             sreverse(word);
+            putchar(' ');
             k = 0;
         }
     }
