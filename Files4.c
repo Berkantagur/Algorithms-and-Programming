@@ -33,3 +33,13 @@ int main(void){
         fclose(fPtr);
     }
 }
+
+// OUTPUT:
+// Enter account number (1 to 100, 0 to end input): 19
+// Enter lastname, firstname and balance: Smith John 10.12
+// Enter account number: 52
+// Enter lastname, firstname and balance: Doe Jane 200.0
+// Enter account number: 30
+// Enter lastname, firstname and balance: Brown Sam -30.41
+// Enter account number: 0
+//
