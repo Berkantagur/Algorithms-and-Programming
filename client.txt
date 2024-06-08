@@ -1,4 +1,3 @@
 1 Ziraat 2.43
 2 Akbank 2.59
 3 Garanti 2.52
-4 İş 2.40
