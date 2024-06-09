@@ -9,14 +9,14 @@ struct clientData{
     double balance;
 };
 
-void initializedFile(){
+void initializeFile() {
     FILE *fPtr = NULL;
 
-    if((fPtr = fopen("database.dat", "wb")) == NULL){
+    if ((fPtr = fopen("database.dat", "wb")) == NULL) {
         printf("File could not be opened.\n");
-    }else{
+    } else {
         struct clientData client = {0, "", "", 0.0};
-        for(int i = 0; i < MAX_CLIENT; i++){
+        for (int i = 0; i < MAX_CLIENT; i++) {
             fwrite(&client, sizeof(struct clientData), 1, fPtr);
         }
 
@@ -24,28 +24,34 @@ void initializedFile(){
     }
 }
 
-void addClient(){
+void addClient() {
     FILE *fPtr = fopen("database.dat", "rb+");
-    if(fPtr == NULL){
+    if (fPtr == NULL) {
         printf("File could not be opened.\n");
-    }else{
+    } else {
         struct clientData client = {0, "", "", 0.0};
         int account;
         printf("Enter new account number (1 to 100, 0 to end input): ");
         scanf("%d", &account);
 
+        if (account < 1 || account > 100) {
+            printf("Invalid account number.\n");
+            fclose(fPtr);
+            return;
+        }
+
         fseek(fPtr, (account - 1) * sizeof(struct clientData), SEEK_SET);
         fread(&client, sizeof(struct clientData), 1, fPtr);
 
-        if(client.account != 0){
+        if (client.account != 0) {
             printf("Account #%d already contains information.\n", client.account);
-        }else{
+        } else {
             printf("Enter lastname, firstname, balance: ");
             scanf("%s%s%lf", client.lastName, client.firstName, &client.balance);
 
             client.account = account;
-            
-            (fPtr, (account - 1) * sizeof(struct clientData), SEEK_SET);
+
+            fseek(fPtr, (account - 1) * sizeof(struct clientData), SEEK_SET);
             fwrite(&client, sizeof(struct clientData), 1, fPtr);
         }
 
@@ -53,22 +59,28 @@ void addClient(){
     }
 }
 
-void updataClient(){
+void updateClient() {
     FILE *fPtr = fopen("database.dat", "rb+");
-    if(fPtr == NULL){
+    if (fPtr == NULL) {
         printf("File could not be opened.\n");
-    }else{
+    } else {
         struct clientData client = {0, "", "", 0.0};
         int account;
         printf("Enter account to update (1 to 100): ");
         scanf("%d", &account);
 
+        if (account < 1 || account > 100) {
+            printf("Invalid account number.\n");
+            fclose(fPtr);
+            return;
+        }
+
         fseek(fPtr, (account - 1) * sizeof(struct clientData), SEEK_SET);
         fread(&client, sizeof(struct clientData), 1, fPtr);
 
-        if(client.account == 0){
+        if (client.account == 0) {
             printf("Account #%d has no information.\n", account);
-        }else{
+        } else {
             printf("%-6d%-16s%-11s%10.2f\n\n", client.account, client.lastName, client.firstName, client.balance);
             printf("Enter new lastname, new firstname, new balance: ");
             scanf("%s%s%lf", client.lastName, client.firstName, &client.balance);
@@ -81,23 +93,30 @@ void updataClient(){
     }
 }
 
-void deleteClient(){
+
+void deleteClient() {
     FILE *fPtr = fopen("database.dat", "rb+");
-    if(fPtr == NULL){
+    if (fPtr == NULL) {
         printf("File could not be opened.\n");
-    }else{
+    } else {
         struct clientData client = {0, "", "", 0.0};
         struct clientData blankClient = {0, "", "", 0.0};
         int account;
         printf("Enter account to delete (1 to 100): ");
         scanf("%d", &account);
 
+        if (account < 1 || account > 100) {
+            printf("Invalid account number.\n");
+            fclose(fPtr);
+            return;
+        }
+
         fseek(fPtr, (account - 1) * sizeof(struct clientData), SEEK_SET);
         fread(&client, sizeof(struct clientData), 1, fPtr);
 
-        if(client.account == 0){
+        if (client.account == 0) {
             printf("Account #%d is already empty.\n", account);
-        }else{
+        } else {
             fseek(fPtr, (account - 1) * sizeof(struct clientData), SEEK_SET);
             fwrite(&blankClient, sizeof(struct clientData), 1, fPtr);
         }
@@ -106,16 +125,16 @@ void deleteClient(){
     }
 }
 
-void displayClient(){
+void displayClient() {
     FILE *fPtr = fopen("database.dat", "rb");
-    if(fPtr == NULL){
+    if (fPtr == NULL) {
         printf("File could not be opened.\n");
-    }else{
+    } else {
         struct clientData client = {0, "", "", 0.0};
         printf("%-6s%-16s%-11s%10s\n", "Acct", "Last Name", "First Name", "Balance");
-        for(int i = 0; i < MAX_CLIENT; i++){//while(!feof(fPtr)){
-            fread(&client, sizeof(struct clientData), 1, fPtr);
-            if(client.account != 0){
+
+        while (fread(&client, sizeof(struct clientData), 1, fPtr)) {
+            if (client.account != 0) {
                 printf("%-6d%-16s%-11s%10.2f\n", client.account, client.lastName, client.firstName, client.balance);
             }
         }
@@ -124,12 +143,12 @@ void displayClient(){
     }
 }
 
-int main(){
+int main() {
     int choice;
 
-    initializedFile();
+    initializeFile();
 
-    do{
+    do {
         printf("\nEnter your choice:\n"
                "1 - Add a new account\n"
                "2 - Update an account\n"
@@ -138,12 +157,12 @@ int main(){
                "5 - End program\n");
         scanf("%d", &choice);
 
-        switch(choice){
+        switch (choice) {
             case 1:
                 addClient();
                 break;
             case 2:
-                updataClient();
+                updateClient();
                 break;
             case 3:
                 deleteClient();
