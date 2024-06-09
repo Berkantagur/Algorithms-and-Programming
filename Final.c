@@ -25,12 +25,16 @@ int main(void){
 
     fscanf(fPtr1, "%d %s %f", &b.barcode, b.title, &b.price);
 
-
     while (!feof(fPtr1)){
         fscanf(fPtr1, "%d %s %f", &b.barcode, b.title, &b.price);
         fwrite(&b, sizeof(BOOK), 1, fPtr2);
     }
-
+    
+    // Display the contents of the file2.dat file
+    /*while (fread(&b, sizeof(BOOK), 1, fPtr2)) {
+        printf("Barcode: %d, Title: %s, Price: %.2f\n", b.barcode, b.title, b.price);
+    }*/
+   
     fclose(fPtr1);
     fclose(fPtr2);
     
