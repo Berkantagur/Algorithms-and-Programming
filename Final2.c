@@ -1,3 +1,6 @@
+// This program identifies a set of players using the linked list structure and finds the player
+// with the highest score among these players and prints their information on the screen.
+
 #include <stdio.h>
 
 typedef struct {
@@ -17,7 +20,7 @@ int main(){
     Actor *temp1 = &a1, temp2 = a1;
 
     while(temp1 != NULL){
-        if(temp1->rating > temp2.rating){
+        if(temp1->rating > temp2.rating){ // temp2 is the player with the highest score. If "<" is used instead of ">", the player with the lowest score will be found.
             temp2 = *temp1;
         }
         temp1 = temp1->next;
