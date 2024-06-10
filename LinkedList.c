@@ -86,7 +86,7 @@ void insert(ListNode_t **sPtr, char value)
         previousPtr = NULL;
         currentPtr = *sPtr;
         /* loop to find the correct location in the list */
-        while (currentPtr != NULL && value > currentPtr->data)
+        while (currentPtr != NULL && value < currentPtr->data)
         {
             previousPtr = currentPtr;         /* walk to ... */
             currentPtr = currentPtr->nextPtr; /* ... next node */

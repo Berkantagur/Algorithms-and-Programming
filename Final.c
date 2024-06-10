@@ -31,9 +31,9 @@ int main(void){
     }
     
     // Display the contents of the file2.dat file
-    /*while (fread(&b, sizeof(BOOK), 1, fPtr2)) {
+    while (fread(&b, sizeof(BOOK), 1, fPtr2)) {
         printf("Barcode: %d, Title: %s, Price: %.2f\n", b.barcode, b.title, b.price);
-    }*/
+    }
 
     fclose(fPtr1);
     fclose(fPtr2);
